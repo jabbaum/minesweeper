@@ -1,1 +1,1 @@
-const board = [[],[]];
+const board = [[],[],[]];
