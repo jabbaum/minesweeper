@@ -10,3 +10,4 @@ const board = [
   [' ', ' ', ' ']
 ];
 printBoard(board);
+board[0][1] = '1';
