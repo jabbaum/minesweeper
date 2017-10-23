@@ -1,3 +1,4 @@
+// day 4 project
 const blankLine = '  |   |  ';
 const guessLine = '1 |   |  ';
 const bombLine = '  | B |  ';
