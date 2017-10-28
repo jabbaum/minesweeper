@@ -23,14 +23,42 @@ const generateBombBoard = (numberOfRows, numberOfColumns, numberOfBombs) => {
   }
   let numberOfBombsPlaced = 0;
   while (numberOfBombsPlaced<numberOfBombs){
-    //this loop currently has the potential to place bombs on top of each other.
+    //grab a random position on the board.
     let randomRowIndex = Math.floor(Math.random()*numberOfRows);
     let randomColumnIndex = Math.floor(Math.random()*numberOfColumns);
+    //verify position doesn't have a bomb on it alredy
+    if (board[randomRowIndex][randomColumnIndex] !== 'B') {
+      //place a bomb at the randomly generated position.
     board[randomRowIndex][randomColumnIndex] = 'B';
     numberOfBombsPlaced ++;
+    }
   }
   return board;
 };
+//get number of adjacent bombs to flipped tile
+const getNumberOfNeighborBombs = (bombBoard, rowIndex, columnIndex) => {
+  // all possible offsets
+  const neighborOffsets = [[-1,-1], [-1,0], [-1,1], [0,-1], [0,1], [1,-1], [1,0], [1,1]];
+  //getting board dimensions
+  const numberOfRows = bombBoard.length;
+  const numberOfColumns = bombBoard[1].length;
+  // count for number of adjacent bombs
+  let numberOfBombs = 0;
+  neighborOffsets.forEach(offSet => {
+    //checking eachoffset.
+    const neighborRowIndex = rowIndex + offSet[0];
+    const neighborColumnIndex = columnIndex + offSet[1];
+    //Verify offset is on the board.
+    if (neighborRowIndex >= 0 && neighborRowIndex < numberOfRows && neighborColumnIndex >= 0 && neighborColumnIndex < numberOfColumns) {
+      if (bombBoard[neighborRowIndex][neighborColumnIndex] == 'B') {
+        //increment adjacent bombs if there is a bomb on the current offset tile.
+        numberOfBombs++;
+      }
+    }
+  });
+  return numberOfBombs;
+};
+
 
 //creating a function to handle printing a board
 const printBoard = board => {
