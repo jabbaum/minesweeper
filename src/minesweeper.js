@@ -59,6 +59,21 @@ const getNumberOfNeighborBombs = (bombBoard, rowIndex, columnIndex) => {
   return numberOfBombs;
 };
 
+// action of flipping a tile.
+const flipTile = (playerBoard, bombBoard, rowIndex, columnIndex) => {
+  if (playerBoard[rowIndex][columnIndex] !== ' ') {
+    //check if tile has been flipped
+    console.log('This tile has already been flipped!');
+    return;
+  } else if (bombBoard[rowIndex][columnIndex] === 'B') {
+    //placing a bomb on the playerBoard becase they flipped a bomb tile.
+    playerBoard[rowIndex][columnIndex] = 'B';
+  } else {
+    //displays # of adjacent bombs.
+    playerBoard[rowIndex][columnIndex] = getNumberOfNeighborBombs(bombBoard, rowIndex, columnIndex);
+  }
+};
+
 
 //creating a function to handle printing a board
 const printBoard = board => {
