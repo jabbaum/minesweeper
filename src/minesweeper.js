@@ -49,7 +49,7 @@ class Board {
     const numberOfRows = this._bombBoard.length;
     const numberOfColumns = this._bombBoard[0].length;
     // count for number of adjacent bombs
-    let numberOfBombs = 0;
+    this._numberOfBombs = 0;
     neighborOffsets.forEach(offSet => {
       //checking eachoffset.
       const neighborRowIndex = rowIndex + offSet[0];
@@ -95,5 +95,5 @@ class Board {
   }
 } //Board
 
-const g = new Game(4,4,3);
-g.playMove(0,1);
+const g = new Game(3,3,3);
+g.playMove(0,0);
