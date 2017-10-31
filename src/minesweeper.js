@@ -91,6 +91,18 @@ class Board {
       }
       board.push(row);
     }
+    let numberOfBombsPlaced = 0;
+    while (numberOfBombsPlaced<numberOfBombs){
+      //grab a random position on the board.
+      let randomRowIndex = Math.floor(Math.random()*numberOfRows);
+      let randomColumnIndex = Math.floor(Math.random()*numberOfColumns);
+      //verify position doesn't have a bomb on it alredy
+      if (board[randomRowIndex][randomColumnIndex] !== 'B') {
+        //place a bomb at the randomly generated position.
+      board[randomRowIndex][randomColumnIndex] = 'B';
+      numberOfBombsPlaced ++;
+      }
+    }
     return board;
   }
 } //Board
