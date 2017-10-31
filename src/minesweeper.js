@@ -7,12 +7,12 @@ class Game {
 
     if (this._board.playerBoard[rowIndex][columnIndex] === 'B') {
       console.log('Game Over!');
-      this._board.print(this._board);
+      this._board.print();
     } else if (!this._board.hasSafeTiles()) {
       console.log('You win!');
     } else {
       console.log('Current Board:');
-      this._board.print(this._board);
+      this._board.print();
     }
   }
 } // Game
@@ -49,7 +49,7 @@ class Board {
     const numberOfRows = this._bombBoard.length;
     const numberOfColumns = this._bombBoard[0].length;
     // count for number of adjacent bombs
-    this._numberOfBombs = 0;
+    let numberOfBombs = 0;
     neighborOffsets.forEach(offSet => {
       //checking eachoffset.
       const neighborRowIndex = rowIndex + offSet[0];
@@ -58,11 +58,11 @@ class Board {
       if (neighborRowIndex >= 0 && neighborRowIndex < numberOfRows && neighborColumnIndex >= 0 && neighborColumnIndex < numberOfColumns) {
         if (this._bombBoard[neighborRowIndex][neighborColumnIndex] == 'B') {
           //increment adjacent bombs if there is a bomb on the current offset tile.
-          this._numberOfBombs++;
+          numberOfBombs++;
         }
       }
     });
-    return this._numberOfBombs;
+    return numberOfBombs;
   }
   hasSafeTiles() {
     return this._numberOfTiles !== this._numberOfBombs;
