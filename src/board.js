@@ -1,4 +1,4 @@
-class Board {
+export class Board {
   constructor(numberOfRows, numberofColumns,numberOfBombs) {
     this._numberOfBombs = numberOfBombs;
     this._numberOfTiles = numberOfRows*numberofColumns;//size of the board so program can check if the game is over.
